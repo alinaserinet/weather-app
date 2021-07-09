@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import CityRouter from './components/CityRoute';
+import Forecast from './pages/Forecast';
+import Home from './pages/Home';
+import SetCity from './pages/SetCity';
+import Weather from './pages/Weather';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Switch>
+      <CityRouter exact path='/'>
+        <Home />
+      </CityRouter>
+      <Route path='/city/set'>
+        <SetCity />
+      </Route>
+      <CityRouter path='/weather'>
+        <Weather />
+      </CityRouter>
+      <CityRouter path='/forecast'>
+        <Forecast />
+      </CityRouter>
+    </Switch>
+  )
 }
-
-export default App;
