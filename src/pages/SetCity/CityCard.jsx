@@ -1,12 +1,17 @@
 import { Button, TableRow, TableCell } from "@material-ui/core";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSetCityState } from "../../context/city";
 
 export default function CityCard({ city }) {
 
     const setCity = useSetCityState();
+    const location = useLocation();
+    const history = useHistory();
+    const {from} = location.state || { from: { pathname: '/' } };
 
     function handleChangeCity() {
         setCity(city);
+        history.replace(from);
     }
 
     return (

@@ -9,16 +9,16 @@ export default function SetCity() {
     const [list, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+
     useEffect(() => {
         document.title = 'Set City';
     }, []);
 
     function handleFindCity(e) {
         e.preventDefault();
+        if (!value) return;
+
         setIsLoading(true);
-        if (!value) {
-            return;
-        }
         http.get(`/find?q=${value}`)
             .then(({ list }) => {
                 setList(list);
