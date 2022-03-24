@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: rgb(126, 126, 126);
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(126, 126, 126, 1) 0%,
+    rgba(64, 64, 64, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(126, 126, 126, 1) 0%,
+    rgba(64, 64, 64, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(126, 126, 126, 1) 0%,
+    rgba(64, 64, 64, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7e7e7e",endColorstr="#404040",GradientType=1);
+}
+
+.main-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.main-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @apply bg-gray-900;
+  opacity: 40%;
+}
