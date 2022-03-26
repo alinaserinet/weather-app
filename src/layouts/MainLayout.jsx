@@ -5,7 +5,7 @@ import MobileFooter from '../components/MobileFooter'
 import { useCityContext } from '../context/city'
 
 export default function MainLayout({ children, bg }) {
-  const backgroundImage = bg || '/images/bg.jpg'
+  const backgroundImage = bg || 'https://i.ibb.co/zNwZxFq/bg.jpg'
   const cityContext = useCityContext()
   const cityName =
     'name' in cityContext
