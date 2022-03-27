@@ -7,6 +7,7 @@ import WeatherIcon from '../components/WeatherIcon'
 import { useSetCityContext } from '../context/city'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import useGeoLocation from '../components/hooks/useGeoLocation'
+import { PingLoader } from '../components/Loader'
 
 export default function SearchCity() {
   const [query, setQuery] = useState('')
@@ -16,7 +17,7 @@ export default function SearchCity() {
   const [, geoCity] = useGeoLocation()
 
   function updateCityFromGeo() {
-    if (!('name' in geoCity)) return
+    if (!geoCity) return
     setCityContext(geoCity)
   }
 
@@ -84,6 +85,14 @@ export default function SearchCity() {
           </Card>
         </button>
       ))}
+      {!geoCity && (
+        <div className="fixed left-1/2 -translate-x-1/2 bottom-14">
+          <PingLoader size=".5rem" className="bg-sky-300" />
+          <span className="pl-2 text-gray-200 text-xs">
+            Getting Your Location
+          </span>
+        </div>
+      )}
     </MainLayout>
   )
 }

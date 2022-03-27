@@ -3,7 +3,7 @@ import api from '../../services/api'
 
 export default function useGeoLocation() {
   const [coords, setCoords] = useState(null)
-  const [city, setCity] = useState({})
+  const [city, setCity] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
