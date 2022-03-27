@@ -25,7 +25,7 @@ export default function Home() {
         excludes.alerts,
       ])
       .then(({ data }) => {
-        console.log(data);
+        console.log(data)
         setTimeZone(data.timezone)
         setHourly(data.hourly)
         setCurrentWeather(data.current)
@@ -41,7 +41,7 @@ export default function Home() {
               className="mx-auto"
               size="4rem"
               color="#FFFFFF"
-              description={currentWeather.weather[0].description}
+              icon={currentWeather.weather[0].icon}
             />
             <div className="text-sm mt-2 text-gray-100">
               {currentWeather.weather[0].description}
@@ -84,13 +84,17 @@ export default function Home() {
                   <SwiperSlide>
                     <div className="bg-gray-900 bg-opacity-40 rounded-xl p-3 text-white">
                       <div className="text-xs">
-                        <span className='pr-2'>{date.getDayByTimestamp(data.dt)}</span>
-                        <span>{date.getTimeByTimestamp(data.dt, timeZone)}</span>
+                        <span className="pr-2">
+                          {date.getDayByTimestamp(data.dt)}
+                        </span>
+                        <span>
+                          {date.getTimeByTimestamp(data.dt, timeZone)}
+                        </span>
                       </div>
                       <WeatherIcon
                         className="mx-auto mt-2"
                         size="2rem"
-                        description={data.weather[0].description}
+                        icon={data.weather[0].icon}
                       />
                       <div className="mt-2">
                         <span className="text-md">{data.temp}</span>

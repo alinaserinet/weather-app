@@ -10,7 +10,7 @@ export default function SearchCity() {
   const [city, setCity] = useState('')
   const [loading, setLoading] = useState(false)
   const [citiesList, setCitiesList] = useState([])
-  const setCityContext = useSetCityContext();
+  const setCityContext = useSetCityContext()
 
   useEffect(() => {
     searchCity(city)
@@ -50,7 +50,7 @@ export default function SearchCity() {
             <span className="text-primary-darker float-right text-xs">
               <WeatherIcon
                 className="text-secondaru"
-                description={city.weather[0].description}
+                icon={city.weather[0].icon}
                 color="auto"
               />
             </span>

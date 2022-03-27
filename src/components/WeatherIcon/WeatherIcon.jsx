@@ -1,7 +1,7 @@
 import icons from './iconsList'
 
-export default function WeatherIcon({ description, size, className, color }) {
-  const icon = icons[description] || icons['clear sky']
+export default function WeatherIcon({ icon: iconName, size, className, color }) {
+  const icon = icons[iconName] || Object.values(icons)[0]
   const IconElement = icon.element
   const iconColor = color === 'auto' ? icon.color : color
 
