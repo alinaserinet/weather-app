@@ -1,33 +1,21 @@
 import { useEffect, useState } from 'react'
 import WeatherIcon from '../components/WeatherIcon'
-import { useCityContext, useSetCityContext } from '../context/city'
+import { useCityContext } from '../context/city'
 import { MainLayout } from '../layouts'
 import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
 import date from '../services/date'
-import useGeoLocation from '../components/hooks/useGeoLocation'
+import 'swiper/css'
 
 export default function Home() {
   const cityContext = useCityContext()
   const [currentWeather, setCurrentWeather] = useState(null)
   const [hourly, setHourly] = useState([])
   const [timeZone, setTimeZone] = useState('UTC')
-  const [, city] = useGeoLocation()
-  const setCityContext = useSetCityContext()
 
   useEffect(() => {
     updateWeather(cityContext)
   }, [cityContext])
-
-  useEffect(() => {
-    updateCity(city)
-  }, [city])
-
-  function updateCity(cityData) {
-    if (!('name' in cityData)) return
-    setCityContext(cityData)
-  }
 
   function updateWeather(city) {
     if (!('lat' in city && 'lon' in city)) return

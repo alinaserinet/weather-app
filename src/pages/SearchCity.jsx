@@ -5,16 +5,24 @@ import { MainLayout } from '../layouts'
 import api from '../services/api'
 import WeatherIcon from '../components/WeatherIcon'
 import { useSetCityContext } from '../context/city'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
+import useGeoLocation from '../components/hooks/useGeoLocation'
 
 export default function SearchCity() {
-  const [city, setCity] = useState('')
+  const [query, setQuery] = useState('')
   const [loading, setLoading] = useState(false)
   const [citiesList, setCitiesList] = useState([])
   const setCityContext = useSetCityContext()
+  const [, geoCity] = useGeoLocation()
+
+  function updateCityFromGeo() {
+    if (!('name' in geoCity)) return
+    setCityContext(geoCity)
+  }
 
   useEffect(() => {
-    searchCity(city)
-  }, [city])
+    searchCity(query)
+  }, [query])
 
   const searchTimer = useRef()
 
@@ -30,25 +38,34 @@ export default function SearchCity() {
     }, 1000)
   }
 
-
   function updateCityContext(city) {
-      setCityContext({
-        name: city.name,
-        lat: city.coord.lat,
-        lon: city.coord.lon,
-        country: city.sys.country,
-      })
+    setCityContext({
+      name: city.name,
+      lat: city.coord.lat,
+      lon: city.coord.lon,
+      country: city.sys.country,
+    })
   }
 
   return (
     <MainLayout>
-      <SearchBox
-        placeholder="Search City"
-        isLoading={loading}
-        className="mb-2 mt-6"
-        city={city}
-        setCity={setCity}
-      />
+      <div className="flex items-center mb-2 mt-6">
+        <SearchBox
+          placeholder="Search City"
+          isLoading={loading}
+          className="w-5/6 sm:w-11/12"
+          city={query}
+          setCity={setQuery}
+        />
+        <div className="w-1/6 sm:w-1/12 text-right">
+          <button
+            className="bg-gray-50 inline-block p-2 rounded-full"
+            onClick={updateCityFromGeo}
+          >
+            <HiOutlineLocationMarker size="2rem" color="#8d8d8d" />
+          </button>
+        </div>
+      </div>
       {citiesList.map((city) => (
         <button
           className="block w-full"
