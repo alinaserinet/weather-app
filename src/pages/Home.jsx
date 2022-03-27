@@ -6,21 +6,31 @@ import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import date from '../services/date'
+import useGeoLocation from '../components/hooks/useGeoLocation'
 
 export default function Home() {
   const cityContext = useCityContext()
   const [currentWeather, setCurrentWeather] = useState(null)
   const [hourly, setHourly] = useState([])
   const [timeZone, setTimeZone] = useState('UTC')
+  const [coords, geoLocationError] = useGeoLocation()
 
   useEffect(() => {
-    updateCurrentWeather(cityContext)
-  }, [cityContext])
+    updateGeoWeather(coords)
+  }, [cityContext, coords])
 
-  function updateCurrentWeather(city) {
-    if (!('coord' in city)) return
+
+  function updateGeoWeather(coords) {
+    if(geoLocationError || !coords) return
+    const {latitude, longitude} = coords
+    updateCurrentWeather(latitude, longitude)
+  }
+
+  
+
+  function updateCurrentWeather(lat, lon) {
     api
-      .oneCall(city.coord.lat, city.coord.lon, [
+      .oneCall(lat, lon, [
         excludes.minutely,
         excludes.alerts,
       ])
