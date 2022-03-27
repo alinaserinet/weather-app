@@ -14,11 +14,11 @@ export default function SearchCity() {
   const [loading, setLoading] = useState(false)
   const [citiesList, setCitiesList] = useState([])
   const setCityContext = useSetCityContext()
-  const [, geoCity] = useGeoLocation()
+  const geoData = useGeoLocation()
 
   function updateCityFromGeo() {
-    if (!geoCity) return
-    setCityContext(geoCity)
+    if (!geoData.city) return
+    setCityContext(geoData.city)
   }
 
   useEffect(() => {
@@ -85,11 +85,11 @@ export default function SearchCity() {
           </Card>
         </button>
       ))}
-      {!geoCity && (
+      {geoData.loading && !geoData.city && (
         <div className="fixed left-1/2 -translate-x-1/2 bottom-14">
           <PingLoader size=".5rem" className="bg-sky-300" />
           <span className="pl-2 text-gray-200 text-xs">
-            Getting Your Location
+            Finding Your Location
           </span>
         </div>
       )}
