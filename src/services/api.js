@@ -1,4 +1,4 @@
-import http from './http'
+import http, { http2 } from './http'
 
 export const excludes = {
   current: 'current',
@@ -19,6 +19,10 @@ class API {
   async oneCall(lat, lon, exclude = []) {
     const excludeStr = exclude.filter((item) => item in excludes).join(',')
     return http.get(`/onecall?lat=${lat}&lon=${lon}&exclude=${excludeStr}`)
+  }
+
+  async getCity(lat, lon) {
+    return http2.get(`/reverse?lat=${lat}&lon=${lon}`)
   }
 }
 

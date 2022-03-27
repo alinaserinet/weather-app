@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import WeatherIcon from '../components/WeatherIcon'
-import { useCityContext } from '../context/city'
+import { useCityContext, useSetCityContext } from '../context/city'
 import { MainLayout } from '../layouts'
 import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -13,27 +13,28 @@ export default function Home() {
   const [currentWeather, setCurrentWeather] = useState(null)
   const [hourly, setHourly] = useState([])
   const [timeZone, setTimeZone] = useState('UTC')
-  const [coords, geoLocationError] = useGeoLocation()
+  const [, city] = useGeoLocation()
+  const setCityContext = useSetCityContext()
 
   useEffect(() => {
-    updateGeoWeather(coords)
-  }, [cityContext, coords])
+    updateWeather(cityContext)
+  }, [cityContext])
 
+  useEffect(() => {
+    updateCity(city)
+  }, [city])
 
-  function updateGeoWeather(coords) {
-    if(geoLocationError || !coords) return
-    const {latitude, longitude} = coords
-    updateCurrentWeather(latitude, longitude)
+  function updateCity(cityData) {
+    if (!('name' in cityData)) return
+    setCityContext(cityData)
   }
 
-  
+  function updateWeather(city) {
+    if (!('lat' in city && 'lon' in city)) return
 
-  function updateCurrentWeather(lat, lon) {
+    const { lat, lon } = city
     api
-      .oneCall(lat, lon, [
-        excludes.minutely,
-        excludes.alerts,
-      ])
+      .oneCall(lat, lon, [excludes.minutely, excludes.alerts])
       .then(({ data }) => {
         console.log(data)
         setTimeZone(data.timezone)

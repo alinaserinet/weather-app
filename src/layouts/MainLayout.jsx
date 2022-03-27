@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Container from '../components/Container'
 import Header from '../components/Header'
 import MobileFooter from '../components/MobileFooter'
@@ -9,7 +8,7 @@ export default function MainLayout({ children, bg }) {
   const cityContext = useCityContext()
   const cityName =
     'name' in cityContext
-      ? `${cityContext.name} - ${cityContext.sys.country}`
+      ? `${cityContext.name} - ${cityContext.country}`
       : ''
   return (
     <>

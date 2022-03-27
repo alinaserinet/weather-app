@@ -30,6 +30,16 @@ export default function SearchCity() {
     }, 1000)
   }
 
+
+  function updateCityContext(city) {
+      setCityContext({
+        name: city.name,
+        lat: city.coord.lat,
+        lon: city.coord.lon,
+        country: city.sys.country,
+      })
+  }
+
   return (
     <MainLayout>
       <SearchBox
@@ -42,7 +52,7 @@ export default function SearchCity() {
       {citiesList.map((city) => (
         <button
           className="block w-full"
-          onClick={() => setCityContext(city)}
+          onClick={() => updateCityContext(city)}
           key={city.id}
         >
           <Card className="mt-4 text-left">
