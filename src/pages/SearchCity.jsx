@@ -7,7 +7,7 @@ import WeatherIcon from '../components/WeatherIcon'
 import { useSetCityContext } from '../context/city'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import useGeoLocation from '../components/hooks/useGeoLocation'
-import { PingLoader } from '../components/Loader'
+import { PingLoader, SpinLoader } from '../components/Loader'
 
 export default function SearchCity() {
   const [query, setQuery] = useState('')
@@ -29,9 +29,13 @@ export default function SearchCity() {
 
   function searchCity(query) {
     clearTimeout(searchTimer.current)
-    if (!query || query.length < 3) return
+    if (!query || query.length < 3) {
+      setCitiesList([])
+      return
+    }
     searchTimer.current = setTimeout(() => {
       setLoading(true)
+      setCitiesList([])
       api.searchCity(query).then(({ data }) => {
         setCitiesList(data.list)
         setLoading(false)
@@ -50,6 +54,11 @@ export default function SearchCity() {
 
   return (
     <MainLayout>
+      {loading && (
+        <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <SpinLoader size='2rem' className="text-gray-300" />
+        </div>
+      )}
       <div className="flex items-center mb-2 mt-6">
         <SearchBox
           placeholder="Search City"

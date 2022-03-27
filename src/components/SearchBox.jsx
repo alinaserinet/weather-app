@@ -1,4 +1,4 @@
-import { BiLoaderAlt } from 'react-icons/bi'
+import { SpinLoader } from './Loader'
 
 export default function SearchBox({
   placeholder,
@@ -20,10 +20,9 @@ export default function SearchBox({
           spellCheck={false}
         />
         {isLoading && (
-          <BiLoaderAlt
-            className="absolute top-3 right-3 animate-spin text-secondaru"
-            size="1.6rem"
-          />
+          <span className="absolute top-3 right-3">
+            <SpinLoader className="text-secondaru" />
+          </span>
         )}
       </div>
     </div>
