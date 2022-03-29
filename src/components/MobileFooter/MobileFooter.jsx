@@ -1,6 +1,5 @@
 import Container from '../Container'
 import { CgHomeAlt, CgSearch, CgFormatSeparator } from 'react-icons/cg'
-import { Link } from 'react-router-dom'
 import Item from './Item'
 
 export default function MobileFooter() {
