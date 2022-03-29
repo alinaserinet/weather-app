@@ -1,5 +1,6 @@
 import Container from '../components/Container'
 import Header, { HeaderTitle } from '../components/Header'
+import MainBG from '../components/MainBG'
 import MobileFooter from '../components/MobileFooter'
 import { useCityContext } from '../context/city'
 
@@ -9,12 +10,9 @@ export default function MainLayout({ children, bg }) {
 
   return (
     <>
-      <div
-        className="main-bg"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      ></div>
+      <MainBG bg={backgroundImage} />
       <Header>
-        <HeaderTitle city={cityContext}/>
+        <HeaderTitle city={cityContext} />
       </Header>
       <Container>{children}</Container>
       <MobileFooter />
