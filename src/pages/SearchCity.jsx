@@ -6,12 +6,13 @@ import api from '../services/api'
 import WeatherIcon from '../components/WeatherIcon'
 import { useSetCityContext } from '../context/city'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
-import useGeoLocation from '../components/hooks/useGeoLocation'
-import { PingLoader, SpinLoader } from '../components/Loader'
+import useGeoLocation from '../hooks/useGeoLocation'
+import { FooterAlert } from '../components/MobileFooter'
+import { AlertMessage } from '../components/Alert'
 
 export default function SearchCity() {
   const [query, setQuery] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [searchLoader, setSearchLoader] = useState(false)
   const [citiesList, setCitiesList] = useState([])
   const setCityContext = useSetCityContext()
   const geoData = useGeoLocation()
@@ -34,11 +35,11 @@ export default function SearchCity() {
       return
     }
     searchTimer.current = setTimeout(() => {
-      setLoading(true)
+      setSearchLoader(true)
       setCitiesList([])
       api.searchCity(query).then(({ data }) => {
         setCitiesList(data.list)
-        setLoading(false)
+        setSearchLoader(false)
       })
     }, 1000)
   }
@@ -54,15 +55,10 @@ export default function SearchCity() {
 
   return (
     <MainLayout>
-      {loading && (
-        <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SpinLoader size='2rem' className="text-gray-300" />
-        </div>
-      )}
       <div className="flex items-center mb-2 mt-6">
         <SearchBox
           placeholder="Search City"
-          isLoading={loading}
+          isLoading={searchLoader}
           className="w-5/6 sm:w-11/12"
           city={query}
           setCity={setQuery}
@@ -94,13 +90,23 @@ export default function SearchCity() {
           </Card>
         </button>
       ))}
-      {geoData.loading && !geoData.city && (
-        <div className="fixed left-1/2 -translate-x-1/2 bottom-14">
-          <PingLoader size=".5rem" className="bg-sky-300" />
-          <span className="pl-2 text-gray-200 text-xs">
-            Finding Your Location
-          </span>
-        </div>
+      {searchLoader && (
+        <FooterAlert iconColor="#d8ff00">
+          <AlertMessage message="Finding Cities" />
+        </FooterAlert>
+      )}
+      {!searchLoader && geoData.loading && !geoData.city && (
+        <FooterAlert iconColor="#00ffad">
+          <AlertMessage message="Finding Your Location" />
+        </FooterAlert>
+      )}
+      {!searchLoader && geoData.error && (
+        <FooterAlert iconColor="transparent">
+          <AlertMessage
+            message={geoData.error.message}
+            className="bg-red-700 bg-opacity-50 px-2 rounded-full"
+          />
+        </FooterAlert>
       )}
     </MainLayout>
   )
