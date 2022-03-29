@@ -101,10 +101,10 @@ export default function SearchCity() {
         </FooterAlert>
       )}
       {!searchLoader && geoData.error && (
-        <FooterAlert iconColor="transparent">
+        <FooterAlert iconColor="#ff4545">
           <AlertMessage
             message={geoData.error.message}
-            className="bg-red-700 bg-opacity-50 px-2 rounded-full"
+            className="text-red-200"
           />
         </FooterAlert>
       )}
