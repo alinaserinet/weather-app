@@ -7,7 +7,7 @@ export default function PingLoader({ size = '1rem', className, color }) {
         style={{
           width: size,
           height: size,
-          backgroundColor: color || '#ffffff',
+          backgroundColor: color || '#d8ff00',
         }}
       ></span>
       <span
@@ -15,7 +15,7 @@ export default function PingLoader({ size = '1rem', className, color }) {
         style={{
           width: size,
           height: size,
-          backgroundColor: color || '#ffffff',
+          backgroundColor: color || '#d8ff00',
         }}
       ></span>
     </span>

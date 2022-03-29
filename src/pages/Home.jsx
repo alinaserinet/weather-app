@@ -6,6 +6,8 @@ import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import date from '../services/date'
 import 'swiper/css'
+import { FooterAlert } from '../components/MobileFooter'
+import { AlertMessage } from '../components/Alert'
 
 export default function Home() {
   const cityContext = useCityContext()
@@ -107,6 +109,11 @@ export default function Home() {
           </>
         )}
       </div>
+      {!currentWeather && (
+        <FooterAlert iconColor="#d8ff00">
+          <AlertMessage message="Getting Weather" />
+        </FooterAlert>
+      )}
     </MainLayout>
   )
 }
