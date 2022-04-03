@@ -95,6 +95,11 @@ export default function SearchCity() {
           <AlertMessage message="Finding Cities" />
         </FooterAlert>
       )}
+      {!searchLoader && geoData.city && (
+        <FooterAlert iconColor="transparent">
+          <AlertMessage message={`Your Current Location: ${geoData.city.name}`} />
+        </FooterAlert>
+      )}
       {!searchLoader && geoData.loading && !geoData.city && (
         <FooterAlert iconColor="#00ffad">
           <AlertMessage message="Finding Your Location" />
