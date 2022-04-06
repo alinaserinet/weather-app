@@ -57,7 +57,7 @@ export default function Home() {
                 Feels like {currentWeather.feels_like} °
               </small>
             </div>
-            <div className="mt-6">
+            <div className="mt-16">
               <Swiper
                 spaceBetween={50}
                 slidesPerView={2}
