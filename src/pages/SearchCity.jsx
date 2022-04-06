@@ -17,9 +17,12 @@ export default function SearchCity() {
   const setCityContext = useSetCityContext()
   const geoData = useGeoLocation()
 
+  console.log(geoData)
+
   function updateCityFromGeo() {
     if (!geoData.city) return
-    updateCity(geoData.city)
+    setCityContext(geoData.city)
+    localStorage.setItem('city', JSON.stringify(geoData.city))
   }
 
   useEffect(() => {
