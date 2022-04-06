@@ -17,8 +17,6 @@ export default function SearchCity() {
   const setCityContext = useSetCityContext()
   const geoData = useGeoLocation()
 
-  console.log(geoData)
-
   function updateCityFromGeo() {
     if (!geoData.city) return
     setCityContext(geoData.city)
