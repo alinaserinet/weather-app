@@ -19,7 +19,7 @@ export default function SearchCity() {
 
   function updateCityFromGeo() {
     if (!geoData.city) return
-    setCityContext(geoData.city)
+    updateCity(geoData.city)
   }
 
   useEffect(() => {
