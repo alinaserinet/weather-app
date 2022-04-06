@@ -8,6 +8,7 @@ import date from '../services/date'
 import 'swiper/css'
 import { FooterAlert } from '../components/MobileFooter'
 import { AlertMessage } from '../components/Alert'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   const cityContext = useCityContext()
@@ -109,10 +110,23 @@ export default function Home() {
           </>
         )}
       </div>
-      {!currentWeather && (
+      {!currentWeather && 'name' in cityContext && (
         <FooterAlert iconColor="#d8ff00">
           <AlertMessage message="Getting Weather" />
         </FooterAlert>
+      )}
+      {!('name' in cityContext) && (
+        <div className="bg-gray-900 bg-opacity-40 max-w-md p-5 text-white w-full rounded-xl absolute-center">
+          <div className="text-center">
+            <h2 className="mb-10">Please Set Your City</h2>
+            <Link
+              to="/search-city"
+              className="bg-oragge text-black p-3 px-4 inline-block rounded-xl"
+            >
+              Set City
+            </Link>
+          </div>
+        </div>
       )}
     </MainLayout>
   )
