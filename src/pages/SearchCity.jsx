@@ -44,13 +44,15 @@ export default function SearchCity() {
     }, 1000)
   }
 
-  function updateCityContext(city) {
-    setCityContext({
+  function updateCity(city) {
+    const cityObj = {
       name: city.name,
       lat: city.coord.lat,
       lon: city.coord.lon,
       country: city.sys.country,
-    })
+    }
+    setCityContext(cityObj)
+    localStorage.setItem('city', JSON.stringify(cityObj))
   }
 
   return (
@@ -75,7 +77,7 @@ export default function SearchCity() {
       {citiesList.map((city) => (
         <button
           className="block w-full"
-          onClick={() => updateCityContext(city)}
+          onClick={() => updateCity(city)}
           key={city.id}
         >
           <Card className="mt-4 text-left">
@@ -97,7 +99,9 @@ export default function SearchCity() {
       )}
       {!searchLoader && geoData.city && (
         <FooterAlert iconColor="transparent">
-          <AlertMessage message={`Your Current Location: ${geoData.city.name}`} />
+          <AlertMessage
+            message={`Your Current Location: ${geoData.city.name}`}
+          />
         </FooterAlert>
       )}
       {!searchLoader && geoData.loading && !geoData.city && (

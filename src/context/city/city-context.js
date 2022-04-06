@@ -13,7 +13,6 @@ export function useCityContext() {
 
 export function useSetCityContext() {
   const setCity = useContext(SetCityContext)
-
   if (!setCity) throw new Error('useSetCityContext most used by a provider!')
   return setCity
 }

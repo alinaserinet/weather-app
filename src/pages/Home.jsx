@@ -5,10 +5,10 @@ import { MainLayout } from '../layouts'
 import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import date from '../services/date'
-import 'swiper/css'
 import { FooterAlert } from '../components/MobileFooter'
 import { AlertMessage } from '../components/Alert'
 import { Link } from 'react-router-dom'
+import 'swiper/css'
 
 export default function Home() {
   const cityContext = useCityContext()
@@ -116,7 +116,7 @@ export default function Home() {
         </FooterAlert>
       )}
       {!('name' in cityContext) && (
-        <div className="bg-gray-900 bg-opacity-40 max-w-md p-5 text-white w-full rounded-xl absolute-center">
+        <div className="bg-gray-900 bg-opacity-40 max-w-md p-5 text-white w-11/12 rounded-xl absolute-center">
           <div className="text-center">
             <h2 className="mb-10">Please Set Your City</h2>
             <Link
