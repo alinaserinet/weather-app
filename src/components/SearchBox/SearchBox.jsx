@@ -1,4 +1,4 @@
-import { SpinLoader } from './Loader'
+import { SpinLoader } from '../Loader'
 
 export default function SearchBox({
   placeholder,

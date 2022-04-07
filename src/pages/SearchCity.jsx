@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import Card from '../components/Card'
-import SearchBox from '../components/SearchBox'
+import SearchBox, { SearchCard } from '../components/SearchBox'
 import { MainLayout } from '../layouts'
 import api from '../services/api'
 import WeatherIcon from '../components/WeatherIcon'
@@ -81,7 +80,7 @@ export default function SearchCity() {
           onClick={() => updateCity(city)}
           key={city.id}
         >
-          <Card className="mt-4 text-left">
+          <SearchCard className="mt-4 text-left">
             {city.name} -<small> {city.sys.country}</small>
             <span className="text-primary-darker float-right text-xs">
               <WeatherIcon
@@ -90,7 +89,7 @@ export default function SearchCity() {
                 color="auto"
               />
             </span>
-          </Card>
+          </SearchCard>
         </button>
       ))}
       {searchLoader && (
