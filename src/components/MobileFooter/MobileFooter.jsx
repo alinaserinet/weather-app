@@ -7,7 +7,7 @@ export default function MobileFooter() {
     <div className="bg-gray-50 w-100 fixed bottom-0 right-0 left-0 rounded-t-xl">
       <Container className="h-full">
         <div className="flex flex-row items-center flex-wrap justify-between h-full">
-          <Item icon={CgFormatSeparator} to="/test" />
+          <Item icon={CgFormatSeparator} to="/forecast" />
           <Item icon={CgHomeAlt} to="/home" />
           <Item icon={CgSearch} to="/search-city" />
         </div>

@@ -27,7 +27,6 @@ export default function Home() {
     api
       .oneCall(lat, lon, [excludes.minutely, excludes.alerts])
       .then(({ data }) => {
-        console.log(data)
         setTimeZone(data.timezone)
         setHourly(data.hourly)
         setCurrentWeather(data.current)

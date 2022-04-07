@@ -57,7 +57,7 @@ export default function SearchCity() {
 
   return (
     <MainLayout>
-      <div className="flex items-center mb-2 mt-6">
+      <div className="flex items-center mb-2 mt-8">
         <SearchBox
           placeholder="Search City"
           isLoading={searchLoader}
