@@ -1,18 +1,10 @@
-import { PingLoader } from "../../components/Loader";
-
 export default function MainLoading() {
   return (
     <div className="absolute-center">
-      <div>
-        <span className="mx-1.5">
-          <PingLoader size="0.5rem" color="white" />
-        </span>
-        <span className="mx-1.5">
-          <PingLoader size="0.5rem" color="white" />
-        </span>
-        <span className="mx-1.5">
-          <PingLoader size="0.5rem" color="white" />
-        </span>
+      <div class="flex items-center justify-center space-x-2 animate-bounce-fast">
+        <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+        <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+        <div class="w-3 h-3 bg-white rounded-full animate-pulse"></div>
       </div>
     </div>
   );

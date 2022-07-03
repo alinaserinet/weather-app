@@ -20,6 +20,9 @@ module.exports = {
       },
       fontSize:{
         'vs': '.65rem',
+      },
+      animation: {
+        'bounce-fast': 'bounce 700ms linear infinite',
       }
     },
   },
