@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import WeatherIcon from '../components/WeatherIcon'
 import { useCityContext } from '../context/city'
-import { MainLayout } from '../layouts'
 import api, { excludes } from '../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import date from '../services/date'
@@ -34,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <MainLayout>
+    <>
       <div className="text-center mt-8">
         {currentWeather && (
           <>
@@ -60,22 +59,22 @@ export default function Home() {
               <Swiper
                 spaceBetween={50}
                 slidesPerView={2}
-                onSlideChange={() => console.log('slide change')}
+                onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
                 breakpoints={{
-                  '@0.00': {
+                  "@0.00": {
                     slidesPerView: 2,
                     spaceBetween: 10,
                   },
-                  '@0.75': {
+                  "@0.75": {
                     slidesPerView: 2,
                     spaceBetween: 20,
                   },
-                  '@1.00': {
+                  "@1.00": {
                     slidesPerView: 3,
                     spaceBetween: 40,
                   },
-                  '@1.50': {
+                  "@1.50": {
                     slidesPerView: 4,
                     spaceBetween: 50,
                   },
@@ -109,12 +108,12 @@ export default function Home() {
           </>
         )}
       </div>
-      {!currentWeather && 'name' in cityContext && (
+      {!currentWeather && "name" in cityContext && (
         <FooterAlert iconColor="#d8ff00">
           <AlertMessage message="Getting Weather" />
         </FooterAlert>
       )}
-      {!('name' in cityContext) && (
+      {!("name" in cityContext) && (
         <div className="bg-gray-900 bg-opacity-40 max-w-md p-5 text-white w-11/12 rounded-xl absolute-center">
           <div className="text-center">
             <h2 className="mb-10">Please Set Your City</h2>
@@ -127,6 +126,6 @@ export default function Home() {
           </div>
         </div>
       )}
-    </MainLayout>
-  )
+    </>
+  );
 }

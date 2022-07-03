@@ -8,7 +8,7 @@ export default function MobileFooter() {
       <Container className="h-full">
         <div className="flex flex-row items-center flex-wrap justify-between h-full">
           <Item icon={CgFormatSeparator} to="/forecast" />
-          <Item icon={CgHomeAlt} to="/home" />
+          <Item icon={CgHomeAlt} to="/" />
           <Item icon={CgSearch} to="/search-city" />
         </div>
       </Container>

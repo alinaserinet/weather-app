@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
 import SearchBox, { SearchCard } from '../components/SearchBox'
-import { MainLayout } from '../layouts'
 import api from '../services/api'
 import WeatherIcon from '../components/WeatherIcon'
 import { useSetCityContext } from '../context/city'
@@ -56,7 +55,7 @@ export default function SearchCity() {
   }
 
   return (
-    <MainLayout>
+    <>
       <div className="flex items-center mb-2 mt-8">
         <SearchBox
           placeholder="Search City"
@@ -117,6 +116,6 @@ export default function SearchCity() {
           />
         </FooterAlert>
       )}
-    </MainLayout>
-  )
+    </>
+  );
 }
