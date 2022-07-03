@@ -19,9 +19,9 @@ export default function Forecast() {
           const weather = data.weather[0]
           const { min, max } = data.temp
           return (
-            <Card className="mt-5 flex justify-between items-center py-0" key={data.dt}>
+            <Card className="mt-5 flex justify-between items-center py-2" key={data.dt}>
               <div className='w-1/6 text-left'>
-                <span className='text-xs text-gray-400'>
+                <span className='text-xs text-gray-300'>
                 {date.getDayByTimestamp(data.dt)}
                 </span>
               </div>
