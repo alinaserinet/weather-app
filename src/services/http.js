@@ -9,8 +9,8 @@ const geoURL =
 const http = axios.create({
   baseURL,
   params: {
-    appid: process.env.REACT_APP_TOKEN,
-    units: process.env.REACT_APP_UNITS,
+    appid: process.env.REACT_APP_TOKEN || null,
+    units: process.env.REACT_APP_UNITS || null,
   },
 })
 
