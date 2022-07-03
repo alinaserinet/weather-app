@@ -3,6 +3,7 @@ import Container from '../components/Container'
 import Header, { HeaderTitle } from '../components/Header'
 import MainBG from '../components/MainBG'
 import { useCityContext } from '../context/city'
+import { MainLoading } from './components'
 const MobileFooter = lazy(() => import('../components/MobileFooter'));
 
 export default function MainLayout({ children, bg }) {
@@ -11,7 +12,7 @@ export default function MainLayout({ children, bg }) {
 
   return (
     <>
-      <Suspense fallback={'loading...'}>
+      <Suspense fallback={<MainLoading />}>
         <MainBG bg={backgroundImage} />
         <Header>
           <HeaderTitle city={cityContext} />
