@@ -18,6 +18,9 @@ module.exports = {
           light: '#7CA9FF',
         },
       },
+      fontSize:{
+        'vs': '.65rem',
+      }
     },
   },
   plugins: [],
