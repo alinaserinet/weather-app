@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense, useLayoutEffect } from 'react'
 import { useSetCityContext } from './context/city'
 import { MainLayout } from './layouts'
+import { MainLoading } from './layouts/components'
 const Home = lazy(() => import('./pages/Home'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const SearchCity = lazy(() => import('./pages/SearchCity'))
@@ -18,7 +19,7 @@ export default function App() {
 
   return (
     <MainLayout>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<MainLoading />}>
       <Routes>
         <Route path="/search-city" element={<SearchCity />} />
         <Route path="/" element={<Home />} />
