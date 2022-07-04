@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import WeatherIcon from '../components/WeatherIcon'
-import { useCityContext } from '../context/city'
-import api, { excludes } from '../services/api'
+import WeatherIcon from '../../components/WeatherIcon'
+import { useCityContext } from '../../context/city'
+import api, { excludes } from '../../services/api'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import date from '../services/date'
-import { FooterAlert } from '../components/MobileFooter'
-import { AlertMessage } from '../components/Alert'
+import date from '../../services/date'
+import { FooterAlert } from '../../components/MobileFooter'
+import { AlertMessage } from '../../components/Alert'
 import { Link } from 'react-router-dom'
 import 'swiper/css'
+import Skeleton from './components/Skeleton'
 
 export default function Home() {
   const cityContext = useCityContext()
@@ -35,6 +36,7 @@ export default function Home() {
   return (
     <>
       <div className="text-center mt-8">
+        {!currentWeather && <Skeleton />}
         {currentWeather && (
           <>
             <WeatherIcon

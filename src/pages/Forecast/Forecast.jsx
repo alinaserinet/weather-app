@@ -10,7 +10,6 @@ import Skeleton from '../../components/Skeleton'
 
 export default function Forecast() {
   const cityContext = useCityContext()
-
   const allWeatherData = useWeatherAllData(cityContext, [excludes.current])
   return (
       <div className="text-center mt-8 mb-20">

@@ -1,4 +1,4 @@
-export default function Skeleton({className, count}) {
+export default function Skeleton({className, count = 1}) {
   return (
     new Array(count).fill().map((_,index) => (
         <div className="animate-pulse flex space-x-4" key={index}>
