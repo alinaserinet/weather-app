@@ -7,7 +7,7 @@ module.exports = {
         dark: '#363B64',
         purple: '#CF68FF',
         pink: '#FF54B0',
-        oragge: '#FF7F6F',
+        orange: '#FF7F6F',
         softOrange: '#FF9F5A',
         gradasi: {
           light: '#294F97',
