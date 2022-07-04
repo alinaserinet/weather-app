@@ -15,7 +15,7 @@ export default function App() {
     const storageCity = localStorage.getItem('city')
     if (!storageCity) return
     setCityContext(JSON.parse(storageCity))
-  }, [setCityContext])
+  }, [setCityContext]);
 
   return (
     <MainLayout>
