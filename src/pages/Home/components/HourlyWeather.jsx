@@ -1,4 +1,4 @@
-import date from '../../../services/date';
+import dateService from '../../../services/dateService';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import WeatherIcon from "../../../components/WeatherIcon";
 import 'swiper/css'
@@ -34,8 +34,8 @@ export default function HourlyWeather({data, timezone}) {
           <SwiperSlide key={index}>
             <div className="bg-gray-900 bg-opacity-40 rounded-xl p-3 text-white">
               <div className="text-xs">
-                <span className="pr-2">{date.getDayByTimestamp(data.dt)}</span>
-                <span>{date.getTimeByTimestamp(data.dt, timezone)}</span>
+                <span className="pr-2">{dateService.getDayByTimestamp(data.dt)}</span>
+                <span>{dateService.getTimeByTimestamp(data.dt, timezone)}</span>
               </div>
               <WeatherIcon
                 className="mx-auto mt-2"

@@ -5,7 +5,7 @@ import { FooterAlert } from '../../components/MobileFooter'
 import { AlertMessage, SetCityAlert } from '../../components/Alert'
 import Skeleton from './components/Skeleton'
 import { CurrentWeather } from './components'
-import reducer, { errorCodes, initState, setData, setError } from './reducer'
+import reducer, { initState, setData, setError } from './reducer'
 import HourlyWeather from './components/HourlyWeather'
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
 
   useLayoutEffect(() => {
     if(!cityContext.name) {
-      dispatch(setError(errorCodes.CITY_ERROR, 'set city'));
+      dispatch(setError('city-error'));
     };
   }, [cityContext]);
 
@@ -52,7 +52,7 @@ export default function Home() {
         </FooterAlert>
       )}
 
-      {error?.code === errorCodes.CITY_ERROR && (
+      {error === 'city-error' && (
         <SetCityAlert />
       )}
     </>
