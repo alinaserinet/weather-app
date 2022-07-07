@@ -1,39 +1,17 @@
-import { useEffect, useLayoutEffect, useReducer } from 'react'
-import { useCityContext } from '../../context/city'
-import api, { excludes } from '../../services/api'
+import { excludes } from '../../services/api'
 import { FooterAlert } from '../../components/MobileFooter'
-import { AlertMessage, SetCityAlert } from '../../components/Alert'
+import { AlertMessage } from '../../components/Alert'
 import Skeleton from './components/Skeleton'
 import { CurrentWeather } from './components'
-import reducer, { initState, setData, setError } from './reducer'
 import HourlyWeather from './components/HourlyWeather'
+import useGetData from '../../hooks/useGetData'
+import Error from '../../components/Error'
 
 export default function Home() {
-  const cityContext = useCityContext();
-  const [state, dispatch] = useReducer(reducer, initState);
-
-  useLayoutEffect(() => {
-    if(!cityContext.name) {
-      dispatch(setError('city-error'));
-    };
-  }, [cityContext]);
-
-  useEffect(() => {
-    updateWeather(cityContext);
-  }, [cityContext]);
-
-  function updateWeather(city) {
-    if (!("lat" in city && "lon" in city)) return;
-    const { lat, lon } = city;
-    api
-      .oneCall(lat, lon, [excludes.minutely, excludes.alerts])
-      .then(({ data }) => {
-        dispatch(setData(data));
-      });
-  }
-
-  const { error, loading, current, hourly, timezone } = state;
-
+  
+  const weatherData = useGetData([excludes.minutely, excludes.daily]);
+  const { error, loading, current, hourly, timezone } = weatherData;
+  
   return (
     <>
       <div className="text-center mt-8">
@@ -52,9 +30,7 @@ export default function Home() {
         </FooterAlert>
       )}
 
-      {error === 'city-error' && (
-        <SetCityAlert />
-      )}
+      <Error error={error} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function SetCityAlert() {
+export default function SetCityError() {
   return (
     <div className="bg-gray-900 bg-opacity-40 max-w-md p-5 text-white w-11/12 rounded-xl absolute-center">
       <div className="text-center">
