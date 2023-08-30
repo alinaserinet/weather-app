@@ -7,6 +7,7 @@ import { HiOutlineLocationMarker } from 'react-icons/hi'
 import useGeoLocation from '../hooks/useGeoLocation'
 import { FooterAlert } from '../components/MobileFooter'
 import { AlertMessage } from '../components/Alert'
+import { useNavigate } from 'react-router-dom'
 
 export default function SearchCity() {
   const [query, setQuery] = useState('')
@@ -14,6 +15,7 @@ export default function SearchCity() {
   const [citiesList, setCitiesList] = useState([])
   const setCityContext = useSetCityContext()
   const geoData = useGeoLocation()
+  const navigate = useNavigate()
 
   function updateCityFromGeo() {
     if (!geoData.city) return
@@ -52,6 +54,7 @@ export default function SearchCity() {
     }
     setCityContext(cityObj)
     localStorage.setItem('city', JSON.stringify(cityObj))
+    return navigate('/')
   }
 
   return (
@@ -117,5 +120,5 @@ export default function SearchCity() {
         </FooterAlert>
       )}
     </>
-  );
+  )
 }
