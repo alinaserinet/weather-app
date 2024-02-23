@@ -1,18 +1,18 @@
-module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+const { init } = require('@fullstacksjs/eslint-config/init');
+
+module.exports = init({
+  modules: {
+    auto: true,
+    esm: true,
+    typescript: {
+      parserProject: ['./tsconfig.eslint.json'],
+      resolverProject: ['./tsconfig.json'],
+    },
+    react: true,
+    tailwind: true,
   },
-}
+  rules: {
+    '@typescript-eslint/no-useless-template-literals': 'off',
+    '@typescript-eslint/prefer-promise-reject-errors': 'off',
+  },
+});
